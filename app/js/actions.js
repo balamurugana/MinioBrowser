@@ -48,6 +48,12 @@ export const SET_LOAD_PATH = 'SET_LOAD_PATH'
 export const SHOW_SETTINGS = 'SHOW_SETTINGS'
 export const SET_SETTINGS = 'SET_SETTINGS'
 export const SHOW_BUCKET_POLICY = 'SHOW_BUCKET_POLICY'
+export const ADD_POLICY = 'ADD_POLICY'
+export const REMOVE_POLICY = 'REMOVE_POLICY'
+export const UPDATE_POLICY = 'UPDATE_POLICY'
+export const READ_ONLY = 'readonly'
+export const WRITE_ONLY = 'writeonly'
+export const READ_WRITE = 'readwrite'
 
 export const setLoginRedirectPath = (path) => {
   return {
@@ -397,4 +403,16 @@ export const hideBucketPolicy = () => {
     type: SHOW_BUCKET_POLICY,
     showBucketPolicy: false
   }
+}
+
+export function addPolicy(bucket, prefix, policy) {
+  return { type: types.ADD_POLICY, bucket, prefix, policy }
+}
+
+export function removePolicy(bucket, prefix) {
+  return { type: types.REMOVE_POLICY, bucket, prefix }
+}
+
+export function updatePolicy(bucket, prefix, policy) {
+  return { type: types.UPDATE_POLICY, bucket, prefix, policy }
 }
