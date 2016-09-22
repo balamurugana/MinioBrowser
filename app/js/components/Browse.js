@@ -17,7 +17,6 @@
 import React from 'react'
 import classNames from 'classnames'
 import browserHistory from 'react-router/lib/browserHistory'
-import connect from 'react-redux/lib/components/connect'
 import humanize from 'humanize'
 import Moment from 'moment'
 import Modal from 'react-bootstrap/lib/Modal'
@@ -172,13 +171,13 @@ export default class Browse extends React.Component {
         dispatch(actions.hideAbout())
     }
 
-    showBucketPolicy() {
+    showBucketPolicy(e) {
+        e.preventDefault()
         const { dispatch } = this.props
         dispatch(actions.showBucketPolicy())
     }
 
-    hideBucketPolicy(e) {
-        e.preventDefault()
+    hideBucketPolicy() {
         const { dispatch } = this.props
         dispatch(actions.hideBucketPolicy())
     }
@@ -297,7 +296,7 @@ export default class Browse extends React.Component {
         const { version, memory, platform, runtime } = this.props.serverInfo
         const { sidebarStatus } = this.props
         const { showSettings } = this.props
-        const { policies, actions } = this.props
+        const { policies, currentBucket, currentPath } = this.props
 
         // Don't always show the SettingsModal. This is done here instead of in
         // SettingsModal.js so as to allow for #componentWillMount to handle
@@ -515,8 +514,8 @@ export default class Browse extends React.Component {
                         </ModalHeader>
 
                         <div className="pm-body">
-                            <PolicyInput bucket={'mytestbucket'} addPolicy={actions.addPolicy} />
-                            <ul className="policy-list">
+                            <PolicyInput bucket={currentBucket} prefix={currentPath} />
+                            <ul className="pmb-list">
                               {policies.map(policy =>
                                 <Policy policy={policy} {...actions} />
                               )}
@@ -532,17 +531,3 @@ export default class Browse extends React.Component {
         )
     }
 }
-
-App.propTypes = {
-  policies: PropTypes.array.isRequired,
-}
-
-function mapStateToProps(state) {
-  return {
-    policies: state.policies
-  }
-}
-
-export default connect(
-  mapStateToProps
-)(App)

@@ -357,17 +357,17 @@ export const setSortSizeOrder = (sortSizeOrder) => {
 }
 
 export const setSortDateOrder = (sortDateOrder) => {
-  return {
-    type: SET_SORT_DATE_ORDER,
-    sortDateOrder
-  }
+    return {
+        type: SET_SORT_DATE_ORDER,
+        sortDateOrder
+    }
 }
 
 export const setLatestUIVersion = (latestUiVersion) => {
-  return {
-    type: SET_LATEST_UI_VERSION,
-    latestUiVersion
-  }
+    return {
+        type: SET_LATEST_UI_VERSION,
+        latestUiVersion
+    }
 }
 
 export const showSettings = () => {
@@ -385,34 +385,43 @@ export const hideSettings = () => {
 }
 
 export const setSettings = (settings) => {
-  return {
-    type: SET_SETTINGS,
-    settings
-  }
+    return {
+        type: SET_SETTINGS,
+        settings
+    }
 }
 
 export const showBucketPolicy = () => {
-  return {
-    type: SHOW_BUCKET_POLICY,
-    showBucketPolicy: true
-  }
+    return {
+        type: SHOW_BUCKET_POLICY,
+        showBucketPolicy: true
+    }
 }
 
 export const hideBucketPolicy = () => {
-  return {
-    type: SHOW_BUCKET_POLICY,
-    showBucketPolicy: false
-  }
+    return {
+        type: SHOW_BUCKET_POLICY,
+        showBucketPolicy: false
+    }
 }
 
-export function addPolicy(bucket, prefix, policy) {
-  return { type: types.ADD_POLICY, bucket, prefix, policy }
+export const addPolicy = (bucket, prefix, policy) => {
+    return {
+        type: ADD_POLICY,
+        bucket, prefix, policy
+    }
 }
 
-export function removePolicy(bucket, prefix) {
-  return { type: types.REMOVE_POLICY, bucket, prefix }
+export const removePolicy = (bucket, prefix) => {
+    return {
+        type: types.REMOVE_POLICY,
+        bucket, prefix
+    }
 }
 
-export function updatePolicy(bucket, prefix, policy) {
-  return { type: types.UPDATE_POLICY, bucket, prefix, policy }
+export const updatePolicy = (bucket, prefix, policy) => {
+    return {
+        type: types.UPDATE_POLICY,
+        bucket, prefix, policy
+    }
 }
